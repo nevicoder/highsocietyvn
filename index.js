@@ -6,11 +6,8 @@ const session = require("express-session");
 const flash = require("connect-flash");
 const mongoose = require("mongoose");
 const uri = process.env.MONGODB_URI;
-console.log(uri);
 mongoose
-  .connect(uri, { useNewUrlParser: true }, () => {
-    console.log("connected");
-  })
+  .connect(uri, { useNewUrlParser: true })
   .then(() =>
     console.log(`${chalk.green("✓")} ${chalk.blue("MongoDB Connected!")}`)
   )
