@@ -5,13 +5,16 @@ const app = express();
 const session = require("express-session");
 const flash = require("connect-flash");
 const mongoose = require("mongoose");
-const uri = process.env.MONGODB_URI
+const uri = process.env.MONGODB_URI;
 console.log(uri);
-mongoose.connect(uri,{ useNewUrlParser: true },
-  () => {
+mongoose
+  .connect(uri, { useNewUrlParser: true }, () => {
     console.log("connected");
-  }
-);
+  })
+  .then(() =>
+    console.log(`${chalk.green("✓")} ${chalk.blue("MongoDB Connected!")}`)
+  )
+  .catch((err) => console.log(err));
 app.use(express.json()); // for parsing application/json
 app.use(express.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
 const PORT = 3000;
