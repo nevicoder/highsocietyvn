@@ -7,12 +7,14 @@
   animation: cursor 1s infinite;
 }
 html {
+  height: -webkit-fill-available;
   font-size: 62.5%;
   background: url("../img/bg.jpg");
   background-size: cover;
   font-family: "Roboto", sans-serif;
 }
 body {
+  height: 100%;
   cursor: url("../img/cursor.png"), auto;
 }
 a {
@@ -20,18 +22,16 @@ a {
 }
 .wrapper {
   width: 1200px;
-  background-color: #fff;
   margin: 0 auto;
-  height: 100vh;
+  height: 100%;
 }
 .header {
   width: 100%;
 }
 .main {
   display: flex;
-  margin-top: 5rem;
   background-color: #fff;
-  /* height: 100vh; */
+  height: 100%;
   padding: 2.5rem;
 }
 

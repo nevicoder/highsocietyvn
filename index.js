@@ -8,9 +8,7 @@ const mongoose = require("mongoose");
 const uri = process.env.MONGODB_URI;
 mongoose
   .connect(uri, { useNewUrlParser: true })
-  .then(() =>
-    console.log(`${chalk.green("✓")} ${chalk.blue("MongoDB Connected!")}`)
-  )
+  .then(() => console.log("MongoDB Connected!"))
   .catch((err) => console.log(err));
 app.use(express.json()); // for parsing application/json
 app.use(express.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
