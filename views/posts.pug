@@ -1,0 +1,16 @@
+extends layouts/main.pug
+block css
+    link(rel="stylesheet" href="/css/posts.css")
+block main
+    .content    
+        ul.post__list
+            each post in posts
+                li.post__item
+                    .post__img
+                        img.post__img-link(src='/img/post_img/' +  post.thumbnail)
+                    .post__content
+                        a.post__title(href=`../post/${post.postId}`) #{post.title}
+                        p.post__detail !{post.content}
+        ul.pagination__list
+            - for (var index = 1; index <= pages; index++)
+                a(class=`pagination__item ${index == current? "pagination__item--active": ""}`  href=`/posts/${index}`) #{index}

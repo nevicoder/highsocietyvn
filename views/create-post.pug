@@ -1,0 +1,15 @@
+extends layouts/main.pug
+block css
+    link(rel="stylesheet" href="/css/create-post.css")
+block main
+    .content
+        form.post__form(action="/admin/create-post" method="POST") 
+            label(for="post__title") Tieu de bai viet
+            input.post__title(type="text" name="post__title")
+            label(for="post__content") Noi dung
+            textarea.post__content(name="post__content", cols="30", rows="10")
+            label(for="post__banner") Chon anh thumbnail
+            input.post__title(type="text" name="post__thumbnail")
+            label(for="post__imgs") Chon anh dinh kem
+            input.post__title(type="text" name="post__imgs")
+            button.form__submit Upload

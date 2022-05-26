@@ -1,0 +1,137 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+*::hover {
+  animation: cursor 1s infinite;
+}
+html {
+  font-size: 62.5%;
+  background: url("../img/bg.jpg");
+  background-size: cover;
+  font-family: "Roboto", sans-serif;
+}
+body {
+  cursor: url("../img/cursor.png"), auto;
+}
+a {
+  cursor: url("../img/cursor.png"), auto;
+}
+.wrapper {
+  width: 1200px;
+  background-color: #fff;
+  margin: 0 auto;
+  height: 100vh;
+}
+.header {
+  width: 100%;
+}
+.main {
+  display: flex;
+  margin-top: 5rem;
+  background-color: #fff;
+  /* height: 100vh; */
+  padding: 2.5rem;
+}
+
+.pixi__container canvas {
+  border-bottom: 1px solid #000;
+}
+.header__navbar {
+  /* margin-top: -1rem; */
+  display: flex;
+  height: 5rem;
+  padding: 0 2rem;
+  background-color: #eee;
+  border-radius: 8px;
+}
+
+.header__navbar-item {
+  white-space: nowrap;
+  border-radius: inherit;
+  color: #999;
+  flex: 1;
+  list-style: none;
+  padding: 10px 15px;
+  /* background-color: #000; */
+  /* width: 25rem; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* border: 1px solid #fff; */
+}
+
+.header__navbar-link {
+  font-size: 1.7rem;
+  color: rgb(115, 115, 115);
+  text-decoration: none;
+  font-weight: 400;
+}
+
+.header__navbar-item:hover {
+  animation: cursor 1s infinite;
+
+  transition: all 1s;
+  color: #000;
+  background-color: white;
+}
+.header__navbar-item:hover a {
+  animation: cursor 1s infinite;
+
+  font-weight: bold;
+  color: #000;
+}
+.header__navbar-item--active {
+  background-color: #fff;
+  color: #000;
+}
+.header__navbar-link--active {
+  color: #000;
+  font-weight: bold;
+}
+.content {
+  width: 70%;
+}
+.sidebar {
+  width: 30%;
+  margin-left: 2rem;
+}
+
+
+.author {
+  padding: 1rem;
+  box-shadow: 3px 3px 10px 5px rgba(0, 0, 0, 0.25);
+}
+
+@keyframes cursor {
+  0% {
+    cursor: url("../img/cursor.png"), auto;
+  }
+  15% {
+    cursor: url("../img/cursor_hover.png"), auto;
+  }
+  30% {
+    cursor: url("../img/cursor_hover2.png"), auto;
+  }
+  45% {
+    cursor: url("../img/cursor_hover3.png"), auto;
+  }
+  60% {
+    cursor: url("../img/cursor.png"), auto;
+  }
+  75% {
+    cursor: url("../img/cursor_hover.png"), auto;
+  }
+  90% {
+    cursor: url("../img/cursor_hover2.png"), auto;
+  }
+}
+footer {
+  height: 10%;
+  background-color: #eee;
+  display: flex;
+justify-content: center;align-items: center;
+font-weight: bold;
+font-size: 1rem;
+}

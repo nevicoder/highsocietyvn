@@ -1,0 +1,17 @@
+extends layouts/main.pug
+block css
+    link(rel="stylesheet" href="/css/register.css")
+block main
+    .content
+        form.signup__form(action="/auth/login" method="POST")
+            h2.signup__text ĐĂNG NHẬP
+            label(for="username__input" class="username__label") Tên tài khoản
+            input(type="text" name="username__input" id="username__input" placeholder="Nhập tên tài khoản")
+            label(for="pwd__input" class="pwd__label") Mật khẩu
+            input(type="password" name="pwd__input" id="pwd__input" placeholder="Nhập tên tài khoản")
+            .signup__button-group
+                button.btn.signin__btn ĐĂNG NHẬP
+                a(href="/register") CHƯA CÓ TÀI KHOẢN? ĐĂNG KÍ NGAY
+block script
+    script(type="text/javascript" src="/js/login.js")
+            

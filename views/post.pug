@@ -1,0 +1,23 @@
+extends layouts/main.pug
+block css
+    link(rel="stylesheet" href="/css/post.css")
+block main
+    .content
+        .post
+            h1(class="post__title") #{post.title}
+            span(class="post__date") Đăng bởi #{post.author} - ngày #{post.datePosted}
+            span(class="post__views") Lươt xem: #{post.viewCounts}
+            img(class="post__img" src=`/img/post_img/${post.thumbnail}`)
+            div(class="post__content") !{post.content}
+        .post__comment
+        if comments
+            ul(class="comment__list")
+                each comment in comments
+                    li(class="comment__item") 
+                        <b>#{comment.user}:</b>
+                        p #{comment.content}
+        form.comment__form(action=`/post/${post.postId}/comment` method="POST") 
+            input.comment__input(type="text" name="comment__content")
+            button.comment__btn Bình luận
+block script
+    script(src="/js/commentValidation.js") 
