@@ -5,13 +5,9 @@ const app = express();
 const session = require("express-session");
 const flash = require("connect-flash");
 const mongoose = require("mongoose");
-mongoose.connect(
-  `mongodb+srv://nemanjavidic96:${process.env.MONGO_PASSWORD}@cluster0.9auum.mongodb.net/hsv_blog?retryWrites=true&w=majority`,
-  { useNewUrlParser: true },
-  () => {
-    console.log("connected");
-  }
-);
+mongoose.connect(MONGODB_URI, { useNewUrlParser: true }, () => {
+  console.log("connected");
+});
 app.use(express.json()); // for parsing application/json
 app.use(express.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
 const PORT = 3000;
