@@ -10,6 +10,7 @@ const postSchema = new Schema({
   thumbnail: { type: String, required: true },
   imgs: { type: String, required: false },
   comments: { type: Array },
+  tags: { type: Array },
 });
 
 const Post = mongoose.model("Post", postSchema);

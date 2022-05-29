@@ -33,7 +33,6 @@ function generatePostTitle(str) {
 }
 const getPost = (req, res, next) => {
   const params = req.params;
-  console.log(params);
   Post.find({ postId: params.postId }, (err, post) => {
     if (err) console.log(err);
     else {
@@ -41,11 +40,12 @@ const getPost = (req, res, next) => {
       const newViewCounts = currentPost.viewCounts + 1;
       res.render("post", { post: currentPost, comments: currentPost.comments });
 
-      console.log(post);
       Post.findOneAndUpdate(
         { title: currentPost.title },
         { viewCounts: newViewCounts },
-        (err, post) => console.log(post)
+        (err, post) => {
+          if (err) console.log(err);
+        }
       );
     }
   });
@@ -74,7 +74,6 @@ const postCreatePost = async (req, res, next) => {
   let today = new Date();
   datePosted =
     today.getDate() + "-" + (today.getMonth() + 1) + "-" + today.getFullYear();
-  console.log(typeof datePosted);
   Post.create(
     {
       postId: await generatePostTitle(body.post__title),
@@ -86,7 +85,6 @@ const postCreatePost = async (req, res, next) => {
     },
     async (err, post) => {
       if (err) console.log(err);
-      console.log(post);
     }
   );
   res.redirect("/posts");
@@ -103,8 +101,6 @@ const postComment = (req, res, next) => {
         { postId: postId },
         { comments: commentList }
       );
-      console.log(commentList);
-      console.log(post);
       res.redirect(`/post/${postId}`);
     });
   } else {
