@@ -1,0 +1,37 @@
+.tagcloud__container{
+    background-image: url("https://www.techexplorist.com/wp-content/uploads/2018/11/universe.jpg") !important;
+    background-size: cover;
+}
+.tagcloud--item{
+    color: #fff !important;
+    font-size: 2rem !important;
+}
+.tagcloud--item:hover{
+    font-size: 3rem !important;
+    animation: cursor 1s infinite !important;
+
+}
+
+@keyframes cursor {
+    0% {
+      cursor: url("../img/cursor.png"), auto;
+    }
+    15% {
+      cursor: url("../img/cursor_hover.png"), auto;
+    }
+    30% {
+      cursor: url("../img/cursor_hover2.png"), auto;
+    }
+    45% {
+      cursor: url("../img/cursor_hover3.png"), auto;
+    }
+    60% {
+      cursor: url("../img/cursor.png"), auto;
+    }
+    75% {
+      cursor: url("../img/cursor_hover.png"), auto;
+    }
+    90% {
+      cursor: url("../img/cursor_hover2.png"), auto;
+    }
+  }

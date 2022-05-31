@@ -43,7 +43,7 @@ const getLogin = (req, res, next) => {
       res.render("login", { wrongUsername: wrongUsername });
     }
     if (wrongPwd) {
-      res.render("login", { wrongPwd: wrongPwd });
+      res.render("login", { wrongPwd: true });
     }
   } else {
     res.render("login");

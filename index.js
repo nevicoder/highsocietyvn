@@ -20,6 +20,7 @@ const registerRoute = require("./routes/registerRoute");
 const loginRoute = require("./routes/loginRoute");
 const logoutRoute = require("./routes/logoutRoute");
 const commentRoute = require("./routes/commentRoute");
+const categoriesRoute = require("./routes/categoriesRoute")
 app.use(
   session({ secret: "highsocietyvn", saveUninitialized: true, resave: true })
 );
@@ -38,5 +39,6 @@ app.use(loginRoute);
 app.use(postRoute);
 app.use(logoutRoute);
 app.use(commentRoute);
+app.use(categoriesRoute);
 app.use("/", homeRoute);
 app.listen(process.env.PORT || PORT, () => console.log(`app is running...`));

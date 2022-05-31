@@ -1,4 +1,18 @@
 .sidebar
-    .author
-        h1 MPL
-        p Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa nostrum optio magnam sapiente tenetur sequi, nihil vero earum magni at corporis soluta saepe impedit quidem voluptatum nobis eos eum! Nisi.
+    .sidebar__author 
+            p.sidebar__author-title Về High Society VN 
+            p.sidebar__author-detail High Society Vietnam là cộng đồng người Việt sống "high". Là nơi mình chia sẻ những gì mình biết/nghĩ xoay quanh chủ đề thức thần, drugs và một ít công nghệ + tâm linh <br/><br/> HSV không chỉ là một cộng đồng, mà là cả một Lối Sống Đẹp
+    .sidebar__tryptamine Công cụ tính liều lượng chất thức thần gốc tryptamine
+        .tryptamine__btn-group
+            button.tryptamine__btn--lsd.tryptamine__btn--active
+                img(src="/img/sidebar_lsd.png", alt="") 
+            button.tryptamine__btn--shroom
+                img(src="/img/sidebar_shroom.png", alt="") 
+        input.tryptamine__pre-dosage(placeholder="Liều dùng gần nhất(ug)")
+        input.tryptamine__desire-dosage(placeholder="Liều dùng mong muốn(ug)")
+        input.tryptamine__days(placeholder="Số ngày tính từ ngày trip (ngày)")
+        div.tryptamine__result Bạn cần dùng:  
+            span.tryptamine__result-text
+            span.tryptamine__result-unit ug
+        div.tryptamine__guide Hướng dẫn sử dụng: Ví dụ như cách đây 7 ngày bạn dùng 200ug LSD, hôm nay bạn muốn effect = 250ug thì bạn điền vào 200 - 250 - 7 => sẽ ra kết quả là 301ug
+    

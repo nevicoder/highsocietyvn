@@ -55,3 +55,14 @@
   background-color: #eee;
   width: 20%;
 }
+
+.post__tags{
+  font-size: 1.5rem;
+
+  width: 100%;
+  text-align: right;
+}
+.post__tag{
+  font-weight: bold;
+text-decoration: none;
+}

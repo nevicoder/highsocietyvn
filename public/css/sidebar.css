@@ -1,0 +1,58 @@
+.sidebar {
+  padding: 1rem;
+  box-shadow: 0 0 10px 5px rgb(0 0 0 / 25%);
+}
+.sidebar__tryptamine {
+  font-size: 2rem;
+  text-align: center;
+  padding: 1rem;
+  box-shadow: 0 0 10px 5px rgb(0 0 0 / 25%);
+
+}
+.sidebar__author {
+  margin-bottom: 2rem;
+  padding: 1rem;
+  box-shadow: 0 0 10px 5px rgb(0 0 0 / 25%);
+
+}
+.tryptamine__btn-group {
+  margin: 2rem 0;
+  justify-content: center;
+  display: flex;
+  flex-direction: row;
+}
+.tryptamine__btn-group button {
+  margin: 0 1rem;
+  width: 5rem;
+  height: 5rem;
+}
+
+.tryptamine__btn-group button img {
+  width: 100%;
+}
+.tryptamine__result {
+  margin-top: 2rem;
+}
+
+.tryptamine__btn--active {
+  border: 5px solid red;
+}
+.tryptamine__result-unit {
+  color: red;
+}
+
+.tryptamine__guide{
+  margin-top: 1rem;
+  font-size: 1.5rem;
+  text-align: justify;
+  text-justify: inter-word;
+}
+.sidebar__author-title{
+  font-size: 2rem;
+  margin-bottom: 2rem;
+}
+.sidebar__author-detail{
+  font-size: 1.5rem;
+  text-align: justify;
+  text-justify: inter-word;
+}

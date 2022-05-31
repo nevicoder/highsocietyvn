@@ -11,6 +11,9 @@ block main
                     .post__content
                         a.post__title(href=`../post/${post.postId}`) #{post.title}
                         p.post__detail !{post.content}
+                        div(class="post__tags") Chủ đề: 
+                            each tag in post.tags
+                                a(class="post__tag" href=`/category/${tag}`) #{tag},
         ul.pagination__list
             - for (var index = 1; index <= pages; index++)
                 a(class=`pagination__item ${index == current? "pagination__item--active": ""}`  href=`/posts/${index}`) #{index}

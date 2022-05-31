@@ -1,6 +1,6 @@
 const app = new PIXI.Application({ width: 1200, height: 400 });
 document.querySelector(".container .pixi__container").appendChild(app.view);
-let texture = PIXI.Texture.from("https://thumbs.dreamstime.com/b/colorful-doodle-waves-abstract-psychedelic-background-decorative-surreal-wavy-texture-vector-hippie-fantasy-style-pattern-148551431.jpg");
+let texture = PIXI.Texture.from("../../img/pixi_texture.jpg");
 let sprite1 = new PIXI.Sprite(texture);
 app.stage.addChild(sprite1);
 
@@ -53,42 +53,42 @@ stuffContainer.y = 200;
 app.stage.addChild(stuffContainer);
 
 // create an array of image ids..
-const fruits = [
-  "../img/banner/resized/shroom.png",
-  "../img/banner/resized/aya.png",
-  "../img/banner/resized/thc.png",
-  "../img/banner/resized/dmt.png",
-  "../img/banner/resized/gd.png",
-  "../img/banner/resized/ket.png",
-  "../img/banner/resized/mescaline.png",
-  "../img/banner/resized/meth.png",
-  // "../img/banner/resized/poppy.png",
-  "../img/banner/resized/xanax.png",
-  "../img/banner/resized/mdma.png",
-];
+// const fruits = [
+//   "../img/banner/resized/shroom.png",
+//   "../img/banner/resized/aya.png",
+//   "../img/banner/resized/thc.png",
+//   "../img/banner/resized/dmt.png",
+//   "../img/banner/resized/gd.png",
+//   "../img/banner/resized/ket.png",
+//   "../img/banner/resized/mescaline.png",
+//   "../img/banner/resized/meth.png",
+//   // "../img/banner/resized/poppy.png",
+//   "../img/banner/resized/xanax.png",
+//   "../img/banner/resized/mdma.png",
+// ];
 
-// create an array of items
-const items = [];
+// // create an array of items
+// const items = [];
 
-// now create some items and randomly position them in the stuff container
-for (let i = 0; i < fruits.length; i++) {
-  const item = PIXI.Sprite.from(fruits[i % fruits.length]);
-  item.x = Math.random() * (Math.random() * (600 - 400) + 400) - 50;
-  item.y = Math.random() * (Math.random() * (600 - 400) + 400) - 50;
-  item.anchor.set(Math.random());
-  stuffContainer.addChild(item);
-  items.push(item);
-}
+// // now create some items and randomly position them in the stuff container
+// for (let i = 0; i < fruits.length; i++) {
+//   const item = PIXI.Sprite.from(fruits[i % fruits.length]);
+//   item.x = Math.random() * (Math.random() * (600 - 400) + 400) - 50;
+//   item.y = Math.random() * (Math.random() * (600 - 400) + 400) - 50;
+//   item.anchor.set(Math.random());
+//   stuffContainer.addChild(item);
+//   items.push(item);
+// }
 
 // used for spinning!
 let count = 0;
 
 app.ticker.add(() => {
-  for (let i = 0; i < items.length; i++) {
-    // rotate each item
-    const item = items[i];
-    item.rotation += 0.06;
-  }
+  // for (let i = 0; i < items.length; i++) {
+  //   // rotate each item
+  //   const item = items[i];
+  //   item.rotation += 0.06;
+  // }
 
   count += 0.01;
 
@@ -108,70 +108,3 @@ app.ticker.add(() => {
   // the 'true' clears the texture before the content is rendered
   app.renderer.render(app.stage, renderTexture2, false);
 });
-// const app = new PIXI.Application({ width: 1200, height: 400 });
-// document.querySelector(".container .pixi__container").appendChild(app.view);
-// // const style = new PIXI.TextStyle({
-// //   fontFamily: "Arial",
-// //   fontSize: 50,
-// //   fontWeight: "bold",
-// //   fill: ["#ffffff", "#00ff99"], // gradient
-// //   stroke: "#4a1850",
-// //   strokeThickness: 8,
-// //   dropShadow: true,
-// //   dropShadowColor: "#000000",
-// //   dropShadowBlur: 4,
-// //   dropShadowAngle: Math.PI / 6,
-// //   dropShadowDistance: 8,
-// //   lineJoin: "round",
-// // });
-// // const basicText = new PIXI.Text("HIGH SOCIETY VIETNAM", style);
-
-// // basicText.x = app.screen.width / 2 - basicText.width / 2;
-// // basicText.y = app.screen.height / 2 - basicText.height / 2;
-// // app.stage.addChild(basicText);
-// // Inner radius of the circle
-// const radius = 100;
-
-// // The blur amount
-// const blurSize = 32;
-
-// app.loader.add("grass", "../img/banner.png");
-// app.loader.load(setup);
-
-// function setup(loader, resources) {
-//   const background = new PIXI.Sprite(resources.grass.texture);
-//   app.stage.addChild(background);
-//   background.width = app.screen.width;
-//   background.height = app.screen.height;
-
-//   const circle = new PIXI.Graphics()
-//     .beginFill(0xff0000)
-//     .drawCircle(radius + blurSize, radius + blurSize, radius)
-//     .endFill();
-//   circle.filters = [new PIXI.filters.BlurFilter(blurSize)];
-
-//   const bounds = new PIXI.Rectangle(
-//     0,
-//     0,
-//     (radius + blurSize) * 2,
-//     (radius + blurSize) * 2
-//   );
-//   const texture = app.renderer.generateTexture(
-//     circle,
-//     PIXI.SCALE_MODES.NEAREST,
-//     1,
-//     bounds
-//   );
-//   const focus = new PIXI.Sprite(texture);
-
-//   app.stage.addChild(focus);
-//   background.mask = focus;
-
-//   app.stage.interactive = true;
-//   app.stage.on("mousemove", pointerMove);
-
-//   function pointerMove(event) {
-//     focus.position.x = event.data.global.x - focus.width / 2;
-//     focus.position.y = event.data.global.y - focus.height / 2;
-//   }
-// }

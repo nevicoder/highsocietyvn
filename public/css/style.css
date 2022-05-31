@@ -45,7 +45,6 @@ a {
   height: 5rem;
   padding: 0 2rem;
   background-color: #eee;
-  border-radius: 8px;
 }
 
 .header__navbar-item {
@@ -92,6 +91,7 @@ a {
   font-weight: bold;
 }
 .content {
+  
   width: 70%;
 }
 .sidebar {
@@ -99,10 +99,9 @@ a {
   margin-left: 2rem;
 }
 
-
-.author {
+.sidebar {      
   padding: 1rem;
-  box-shadow: 3px 3px 10px 5px rgba(0, 0, 0, 0.25);
+  box-shadow: 0 0 10px 5px rgb(0 0 0 / 25%);
 }
 
 @keyframes cursor {
@@ -132,7 +131,8 @@ footer {
   height: 7rem;
   background-color: #eee;
   display: flex;
-justify-content: center;align-items: center;
-font-weight: bold;
-font-size: 1rem;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  font-size: 1rem;
 }

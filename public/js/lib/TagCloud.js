@@ -175,7 +175,6 @@
 
                         var $el = document.createElement("div");
                         $el.className = self.config.containerClass;
-
                         if (self.config.useContainerInlineStyles) {
                             $el.style.position = "relative";
                             $el.style.width = "".concat(2 * self.radius, "px");

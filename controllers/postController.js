@@ -1,6 +1,6 @@
 const Post = require("../models/Post");
 
-function generatePostTitle(str) {
+const generatePostTitle = (str) => {
   str = str.replace(/à|á|ạ|ả|ã|â|ầ|ấ|ậ|ẩ|ẫ|ă|ằ|ắ|ặ|ẳ|ẵ/g, "a");
   str = str.replace(/è|é|ẹ|ẻ|ẽ|ê|ề|ế|ệ|ể|ễ/g, "e");
   str = str.replace(/ì|í|ị|ỉ|ĩ/g, "i");
@@ -30,15 +30,21 @@ function generatePostTitle(str) {
     ""
   );
   return str.split(" ").join("-").toLowerCase();
-}
+};
 const getPost = (req, res, next) => {
   const params = req.params;
   Post.find({ postId: params.postId }, (err, post) => {
     if (err) console.log(err);
     else {
       const [currentPost] = post;
+      console.log(currentPost);
+
       const newViewCounts = currentPost.viewCounts + 1;
-      res.render("post", { post: currentPost, comments: currentPost.comments });
+      res.render("post", {
+        post: currentPost,
+        comments: currentPost.comments,
+        tags: currentPost.tags,
+      });
 
       Post.findOneAndUpdate(
         { title: currentPost.title },
@@ -71,6 +77,9 @@ const getCreatePost = (req, res, next) => {
 
 const postCreatePost = async (req, res, next) => {
   const body = req.body;
+  const tags = body.post__tags.split(',')
+  console.log(body);
+  console.log(tags);
   let today = new Date();
   datePosted =
     today.getDate() + "-" + (today.getMonth() + 1) + "-" + today.getFullYear();
@@ -82,9 +91,12 @@ const postCreatePost = async (req, res, next) => {
       thumbnail: body.post__thumbnail,
       imgs: body.post__imgs,
       datePosted: datePosted,
+      tags: tags,
     },
     async (err, post) => {
       if (err) console.log(err);
+
+      console.log(post);
     }
   );
   res.redirect("/posts");

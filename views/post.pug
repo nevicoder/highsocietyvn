@@ -10,8 +10,11 @@ block main
             span(class="post__views") Lươt xem: #{post.viewCounts}
             img(class="post__img" src=`/img/post_img/${post.thumbnail}`)
             div(class="post__content") !{post.content}
+            div(class="post__tags") Chủ đề: 
+                each tag in tags
+                    a(class="post__tag" href=`/category/${tag}`) #{tag},
         .post__comment
-        if comments
+        if comments.length > 0
             ul(class="comment__list")
                 each comment in comments
                     li(class="comment__item") 

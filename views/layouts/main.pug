@@ -12,6 +12,7 @@ html(lang='en')
     link(rel="preconnect" href="https://fonts.gstatic.com" crossorigin)
     link(href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;0,700;0,900;1,400;1,500&display=swap" rel="stylesheet")
     link(rel="stylesheet" href="/css/toastify.css")
+    link(rel="stylesheet" href="/css/sidebar.css") 
 
     block css
     title High Society VN
@@ -37,7 +38,7 @@ html(lang='en')
             li.header__navbar-item(href="/posts" class=allPosts ? " header__navbar-item--active" : "")  
                a.header__navbar-link(href="/posts" class=allPosts ? " header__navbar-link--active" : "")  Tất cả bài viết
             li.header__navbar-item
-               a.header__navbar-link(href="/posts") Bài viết theo chủ đề
+               a.header__navbar-link(href="/categories") Bài viết theo chủ đề
             li.header__navbar-item
               a.header__navbar-link Công cụ
             li.header__navbar-item
@@ -57,3 +58,4 @@ html(lang='en')
     block script
     script(type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js")
     script(type="text/javascript" src="/js/toastify.js")
+    script(type="text/javascript" src="/js/tryptamineDosage.js" defer)

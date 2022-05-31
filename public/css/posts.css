@@ -1,6 +1,5 @@
 .post__item {
   margin-bottom: 2rem;
-  height: 15rem;
   list-style-type: none;
   display: flex;
   flex-direction: row;
@@ -16,23 +15,27 @@
 }
 
 .post__content {
+  display: flex;
+  flex-direction: column;
   padding: 1rem;
   width: 75%;
   margin-left: 1rem;
+justify-content: space-between;
 }
 
-.post__content a {
+.post__title {
   font-size: 2rem;
   font-weight: bold;
   text-decoration: none;
   color: #000;
+  
 }
 .post__title {
   animation: cursor 1s infinite;
 
   /* cursor: url("../img/cursor_hover.png"), auto; */
 }
-.post__content p {
+.post__detail {
   display: -webkit-box;
   margin-top: 1rem;
   font-size: 1.5rem;
@@ -64,4 +67,12 @@
   display: flex;
   flex-direction: row;
   justify-content: center
+}
+.post__tags{
+  font-size: 1.5rem;
+  margin-top: 1rem;
+  text-align: right;
+}
+.post__tag{
+  text-decoration: none;
 }
