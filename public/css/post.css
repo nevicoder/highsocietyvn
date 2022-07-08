@@ -38,9 +38,23 @@
   box-shadow: 3px 3px 10px 5px rgb(0 0 0 / 25%);
   padding: 1rem;
 }
+.comment{
+  display: flex;
+
+  flex-direction: row;
+
+}
 .comment__item {
   list-style-type: none;
   font-size: 1.5rem;
+}
+
+.comment__avatar img{
+  /* width: 100%; */
+  object-fit: cover;
+}
+.comment__content{
+  margin-left: 1rem;
 }
 .comment__item:not(:last-child) {
   margin-bottom: 1rem;

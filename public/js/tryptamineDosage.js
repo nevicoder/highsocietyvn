@@ -19,8 +19,8 @@ function changeSubstance(sub) {
   }
   if (sub === "shroom") {
     console.log("shroom");
-    lsdBtn.classList.add("tryptamine__btn--active");
-    shroomBtn.classList.remove("tryptamine__btn--active");
+    shroomBtn.classList.add("tryptamine__btn--active");
+    lsdBtn.classList.remove("tryptamine__btn--active");
     preDosage.setAttribute("placeholder", "Liều dùng gần nhất(g)");
     desireDosage.setAttribute("placeholder", "Liều dùng mong muốn(g)");
     unit.innerText = "g"

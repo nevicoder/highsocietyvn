@@ -1,4 +1,5 @@
 const Post = require("../models/Post");
+const mongoose = require("mongoose");
 
 const generatePostTitle = (str) => {
   str = str.replace(/à|á|ạ|ả|ã|â|ầ|ấ|ậ|ẩ|ẫ|ă|ằ|ắ|ặ|ẳ|ẵ/g, "a");
@@ -31,31 +32,54 @@ const generatePostTitle = (str) => {
   );
   return str.split(" ").join("-").toLowerCase();
 };
-const getPost = (req, res, next) => {
-  const params = req.params;
-  Post.find({ postId: params.postId }, (err, post) => {
-    if (err) console.log(err);
-    else {
-      const [currentPost] = post;
-      console.log(currentPost);
-
-      const newViewCounts = currentPost.viewCounts + 1;
-      res.render("post", {
-        post: currentPost,
-        comments: currentPost.comments,
-        tags: currentPost.tags,
-      });
-
-      Post.findOneAndUpdate(
-        { title: currentPost.title },
-        { viewCounts: newViewCounts },
-        (err, post) => {
-          if (err) console.log(err);
-        }
-      );
-    }
-  });
+const getPost = async (req, res, next) => {
+  try {
+    const postId = req.params.postId;
+    const post = await Post.findOne({ postId });
+    console.log(post);
+    // const newViewCounts = (await post.viewCounts) + 1;
+    // await Post.findOneAndUpdate({ postId }, { viewCounts: newViewCounts });
+    await res.render("post", { post });
+  } catch (e) {
+    console.log(e);
+  }
 };
+
+//   await Post.findOneAndUpdate(
+//     { title: post.title },
+//     { viewCounts: post.viewCounts + 1 },
+//     (err, post) => {
+//       if (err) console.log(err);
+//     }
+//   );
+//   res.render("post", {
+//     post,
+//     comments: post.comments,
+//     tags: post.tags,
+//   });
+// });
+
+//   Post.findOne({ postId: params.postId }, (err, post) => {
+//     if (err) console.log(err);
+//     else {
+//       // const newViewCounts = post.viewCounts + 1;
+//       console.log(post);
+
+//       Post.findOneAndUpdate(
+//         { title: post.title },
+//         { viewCounts: post.viewCounts + 1 },
+//         (err, post) => {
+//           if (err) console.log(err);
+//         }
+//       );
+//       res.render("post", {
+//         post,
+//         comments: post.comments,
+//         tags: post.tags,
+//       });
+//     }
+//   });
+// };
 const getPosts = async (req, res, next) => {
   const perPage = 5; // số lượng sản phẩm xuất hiện trên 1 page
   const page = req.params.page || 1;
@@ -77,9 +101,7 @@ const getCreatePost = (req, res, next) => {
 
 const postCreatePost = async (req, res, next) => {
   const body = req.body;
-  const tags = body.post__tags.split(',')
-  console.log(body);
-  console.log(tags);
+  const tags = body.post__tags.split(",");
   let today = new Date();
   datePosted =
     today.getDate() + "-" + (today.getMonth() + 1) + "-" + today.getFullYear();
@@ -95,8 +117,6 @@ const postCreatePost = async (req, res, next) => {
     },
     async (err, post) => {
       if (err) console.log(err);
-
-      console.log(post);
     }
   );
   res.redirect("/posts");
@@ -104,11 +124,16 @@ const postCreatePost = async (req, res, next) => {
 
 const postComment = (req, res, next) => {
   const { postId } = req.params;
-  if (userInfo) {
+  if (req.user) {
     Post.findOne({ postId: postId }, async (err, post) => {
       const commentList = await post.comments;
       const comment = await req.body.comment__content;
-      await commentList.push({ user: userInfo.username, content: comment });
+      await commentList.push({
+        id: new mongoose.Types.ObjectId(),
+        user: req.user,
+        content: comment,
+        replies: [],
+      });
       await Post.findOneAndUpdate(
         { postId: postId },
         { comments: commentList }
@@ -119,10 +144,44 @@ const postComment = (req, res, next) => {
     res.redirect("/login");
   }
 };
+const postReply = async (req, res, next) => {
+  try {
+    const { postId, commentId } = req.params;
+    console.log(req.body);
+    await Post.updateOne(
+      {
+        postId: postId,
+        comments: {
+          $elemMatch: {
+            id: commentId,
+          },
+        },
+      },
+      {
+        $push: {
+          "comments.$.replies": {
+            $each: [
+              {
+                id: new mongoose.Types.ObjectId(),
+                user: req.user,
+                content: req.body.reply__content,
+              },
+            ],
+          },
+        },
+      }
+    );
+    res.redirect(`/post/${postId}`);
+  } catch (e) {
+    console.log(e);
+  }
+};
+
 module.exports = {
   getPost,
   getPosts,
   getCreatePost,
   postCreatePost,
   postComment,
+  postReply,
 };

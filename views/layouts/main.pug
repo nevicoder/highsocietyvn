@@ -16,16 +16,6 @@ html(lang='en')
 
     block css
     title High Society VN
-    if existed
-      body(onload=`showMsg("Tài khoản ${username} đã tồn tại")`)
-    if validate
-      body(onload=`showMsg("Xác thực mật khẩu thất bại")`)
-    if wrongUsername
-      body(onload=`showMsg("Tên tài khoản không tồn tại")`)
-    if wrongPwd
-      body(onload=`showMsg("Sai mật khẩu")`)
-    if registered
-      body(onload=`showMsg("Đăng kí thành công")`)
     if signedIn
       body(onload=`showMsg("Đăng nhập thành công")`)
     .wrapper
@@ -43,10 +33,10 @@ html(lang='en')
               a.header__navbar-link Công cụ
             li.header__navbar-item
                a.header__navbar-link Về HSV
-            if userInfo
+            if isLoggedIn
               li.header__navbar-item
                 a.header__navbar-link(href="/auth/logout") Đăng xuất
-            if !userInfo
+            if !isLoggedIn
               li.header__navbar-item
                 a.header__navbar-link(href="/login") Đăng nhập/Đăng ký
       .main
