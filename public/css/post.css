@@ -38,45 +38,60 @@
   box-shadow: 3px 3px 10px 5px rgb(0 0 0 / 25%);
   padding: 1rem;
 }
-.comment{
+.comment {
   display: flex;
 
   flex-direction: row;
-
 }
 .comment__item {
   list-style-type: none;
   font-size: 1.5rem;
 }
 
-.comment__avatar img{
+.comment__avatar img {
   /* width: 100%; */
   object-fit: cover;
 }
-.comment__content{
+.comment__content {
   margin-left: 1rem;
 }
 .comment__item:not(:last-child) {
-  margin-bottom: 1rem;
+  margin-bottom: 1.5rem;
 }
 .comment__input {
-  margin-top: 2rem;
+  background-color: var(--secondary-color);
   width: 80%;
   height: 3rem;
 }
 .comment__btn {
   height: 3rem;
-  background-color: #eee;
-  width: 20%;
+  background-color: var(--secondary-color);
+  width: 18%;
 }
-
-.post__tags{
+.comment__form {
+  margin-top: 2rem;
+  justify-content: space-between;
+  display: flex;
+  align-items: center;
+}
+.post__tags {
   font-size: 1.5rem;
 
   width: 100%;
   text-align: right;
 }
-.post__tag{
+.post__tag {
   font-weight: bold;
-text-decoration: none;
+  text-decoration: none;
+}
+
+.replies__input {
+  background-color: var(--secondary-color);
+}
+
+.replies__btn {
+  margin-left: 1rem;
+  height: 100%;
+  font-size: 1.5rem;
+  background-color: var(--secondary-color);
 }

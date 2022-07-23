@@ -6,11 +6,11 @@ block main
         form.signup__form(action="/auth/register" method="POST")
             h2.signup__text ĐĂNG KÍ TÀI KHOẢN
             label(for="username__input" class="username__label") Tên tài khoản
-            input(type="text" name="username__input" id="username__input" placeholder="Nhập tên tài khoản")
+            input(type="text" name="username" id="username__input" placeholder="Nhập tên tài khoản")
             label(for="pwd__input" class="pwd__label") Mật khẩu
-            input(type="password" name="pwd__input" id="pwd__input" placeholder="Nhập tên tài khoản")
+            input(type="password" name="password" id="pwd__input" placeholder="Nhập tên tài khoản")
             label(for="pwd2__input" class="pwd2__label") Nhập lại mật khẩu
-            input(type="password" name="pwd2__input" id="pwd2__input" placeholder="Nhập tên tài khoản")
+            input(type="password" name="password2" id="pwd2__input" placeholder="Nhập tên tài khoản")
             .signup__button-group
                 button.btn.signup__btn ĐĂNG KÍ TÀI KHOẢN
                 button.btn.signin__btn ĐÃ CÓ TÀI KHOẢN/ĐĂNG NHẬP

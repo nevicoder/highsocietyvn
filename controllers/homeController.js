@@ -1,5 +1,5 @@
 const getHome = (req, res, next) => {
-  res.render("index", { user: req.user });
+  res.render("index");
 };
 
 module.exports = getHome;

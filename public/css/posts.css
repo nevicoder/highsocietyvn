@@ -1,4 +1,5 @@
 .post__item {
+  background-color: var(--secondary-color);
   margin-bottom: 2rem;
   list-style-type: none;
   display: flex;
@@ -20,15 +21,14 @@
   padding: 1rem;
   width: 75%;
   margin-left: 1rem;
-justify-content: space-between;
+  justify-content: space-between;
 }
 
 .post__title {
   font-size: 2rem;
   font-weight: bold;
   text-decoration: none;
-  color: #000;
-  
+  color: var(--text-color);
 }
 .post__title {
   animation: cursor 1s infinite;
@@ -39,7 +39,8 @@ justify-content: space-between;
   display: -webkit-box;
   margin-top: 1rem;
   font-size: 1.5rem;
-  color: #000;
+  color: var(--text-color);
+
   -webkit-line-clamp: 5;
   -webkit-box-orient: vertical;
   overflow: hidden;
@@ -49,16 +50,18 @@ justify-content: space-between;
   color: unset;
   text-decoration: none;
   padding: 1rem;
-  background-color: #eee;
+  background-color: var(--secondary-color);
+
   list-style-type: none;
   font-size: 2rem;
 }
-.pagination__item--active{
+.pagination__item--active {
+  font-size: 2rem;
   pointer-events: none;
   cursor: none;
-  font-weight:900;
+  font-weight: 1000;
 }
-.pagination__item:not(:last-child){
+.pagination__item:not(:last-child) {
   margin-right: 1rem;
 }
 
@@ -66,13 +69,13 @@ justify-content: space-between;
   width: 100%;
   display: flex;
   flex-direction: row;
-  justify-content: center
+  justify-content: center;
 }
-.post__tags{
+.post__tags {
   font-size: 1.5rem;
   margin-top: 1rem;
   text-align: right;
 }
-.post__tag{
+.post__tag {
   text-decoration: none;
 }

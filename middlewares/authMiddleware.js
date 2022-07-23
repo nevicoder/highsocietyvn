@@ -1,6 +1,10 @@
-module.exports = (req, res, next) => {
-  if (req.user) {
-    isLoggedIn = req.user;
+const jwt = require("jsonwebtoken");
+
+module.exports = async (req, res, next) => {
+  const token = req.cookies.userInfo;
+  if (token) {
+    const info = jwt.verify(token, process.env.JWT_SECRET);
+    global.loggedIn = info;
   }
   next();
 };

@@ -124,13 +124,13 @@ const postCreatePost = async (req, res, next) => {
 
 const postComment = (req, res, next) => {
   const { postId } = req.params;
-  if (req.user) {
+  if (loggedIn) {
     Post.findOne({ postId: postId }, async (err, post) => {
       const commentList = await post.comments;
       const comment = await req.body.comment__content;
       await commentList.push({
         id: new mongoose.Types.ObjectId(),
-        user: req.user,
+        user: loggedIn,
         content: comment,
         replies: [],
       });
@@ -145,35 +145,38 @@ const postComment = (req, res, next) => {
   }
 };
 const postReply = async (req, res, next) => {
-  try {
-    const { postId, commentId } = req.params;
-    console.log(req.body);
-    await Post.updateOne(
-      {
-        postId: postId,
-        comments: {
-          $elemMatch: {
-            id: commentId,
+  if (loggedIn) {
+    try {
+      const { postId, commentId } = req.params;
+      await Post.updateOne(
+        {
+          postId: postId,
+          comments: {
+            $elemMatch: {
+              id: commentId,
+            },
           },
         },
-      },
-      {
-        $push: {
-          "comments.$.replies": {
-            $each: [
-              {
-                id: new mongoose.Types.ObjectId(),
-                user: req.user,
-                content: req.body.reply__content,
-              },
-            ],
+        {
+          $push: {
+            "comments.$.replies": {
+              $each: [
+                {
+                  id: new mongoose.Types.ObjectId(),
+                  user: loggedIn.username,
+                  content: req.body.reply__content,
+                },
+              ],
+            },
           },
-        },
-      }
-    );
-    res.redirect(`/post/${postId}`);
-  } catch (e) {
-    console.log(e);
+        }
+      );
+      res.redirect(`/post/${postId}`);
+    } catch (e) {
+      console.log(e);
+    }
+  } else {
+    res.redirect("/login");
   }
 };
 

@@ -33,10 +33,10 @@ html(lang='en')
               a.header__navbar-link Công cụ
             li.header__navbar-item
                a.header__navbar-link Về HSV
-            if isLoggedIn
+            if loggedIn
               li.header__navbar-item
                 a.header__navbar-link(href="/auth/logout") Đăng xuất
-            if !isLoggedIn
+            if !loggedIn
               li.header__navbar-item
                 a.header__navbar-link(href="/login") Đăng nhập/Đăng ký
       .main

@@ -1,4 +1,6 @@
 .sidebar {
+  background-color: var(--secondary-color);
+
   padding: 1rem;
   box-shadow: 0 0 10px 5px rgb(0 0 0 / 25%);
 }
@@ -7,13 +9,32 @@
   text-align: center;
   padding: 1rem;
   box-shadow: 0 0 10px 5px rgb(0 0 0 / 25%);
+}
+.sidebar__tryptamine input {
+  background-color: var(--primary-color);
+}
+::placeholder {
+  /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: var(--text-color);
 
+  opacity: 0.7; /* Firefox */
+}
+
+:-ms-input-placeholder {
+  /* Internet Explorer 10-11 */
+  color: var(--text-color);
+  opacity: 0.7; /* Firefox */
+}
+
+::-ms-input-placeholder {
+  /* Microsoft Edge */
+  color: var(--text-color);
+  opacity: 0.7; /* Firefox */
 }
 .sidebar__author {
   margin-bottom: 2rem;
   padding: 1rem;
   box-shadow: 0 0 10px 5px rgb(0 0 0 / 25%);
-
 }
 .tryptamine__btn-group {
   margin: 2rem 0;
@@ -41,17 +62,17 @@
   color: red;
 }
 
-.tryptamine__guide{
+.tryptamine__guide {
   margin-top: 1rem;
   font-size: 1.5rem;
   text-align: justify;
   text-justify: inter-word;
 }
-.sidebar__author-title{
+.sidebar__author-title {
   font-size: 2rem;
   margin-bottom: 2rem;
 }
-.sidebar__author-detail{
+.sidebar__author-detail {
   font-size: 1.5rem;
   text-align: justify;
   text-justify: inter-word;

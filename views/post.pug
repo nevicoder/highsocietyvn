@@ -23,7 +23,7 @@ block main
                             div.comment__avatar
                                 img(src=`${comment.user.avatar}`)
                             div.comment__content
-                                b.comment__user #{comment.user.name}:
+                                b.comment__user #{comment.user.username}:
                                 p.comment__text #{comment.content}
                         if comment.replies
                             p #{comment.replies.content}
