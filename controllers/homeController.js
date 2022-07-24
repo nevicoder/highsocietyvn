@@ -1,5 +1,7 @@
 const getHome = (req, res, next) => {
-  res.render("index");
+  const [messages] = req.flash("message") || null;
+
+  res.render("index", { messages });
 };
 
 module.exports = getHome;

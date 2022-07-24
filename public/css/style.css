@@ -1,7 +1,7 @@
 :root {
   --primary-color: hsl(219, 24%, 22%);
   --secondary-color: #161c2a;
-  --text-color: #A0AEC0;
+  --text-color: #a0aec0;
   /* --text-color: #9dc7e0; */
   --border-color: #516398;
 }
@@ -9,8 +9,9 @@ input {
   padding: 0.5rem 1rem;
 }
 input,
-button {
-  color: var(--text-color);
+button,textarea {
+  color: var(--primary-color);
+
   outline: none;
   border: none;
 }
@@ -19,7 +20,7 @@ a {
 }
 
 * {
-  color: rgba(255, 255, 255, 0.8) !important;
+  color: rgba(255, 255, 255, 0.8);
   padding: 0;
   margin: 0;
   box-sizing: border-box;
@@ -119,6 +120,7 @@ a {
 }
 .content {
   width: 70%;
+
 }
 .sidebar {
   width: 30%;

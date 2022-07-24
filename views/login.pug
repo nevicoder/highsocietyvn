@@ -1,17 +1,17 @@
 extends layouts/main.pug
 block css
-    link(rel="stylesheet" href="/css/register.css")
+    link(rel="stylesheet" href="/css/login.css")
     
 block main
     .content
-       
-        form.signup__form(action="/auth/login" method="POST")
-            h2.signup__text ĐĂNG NHẬP
+        form.login__form(action="/auth/login" method="POST")
+            h2.login__text ĐĂNG NHẬP
             label(for="username__input" class="username__label") Tên tài khoản
             input(type="text" name="username" id="username__input" placeholder="Nhập tên tài khoản")
             label(for="pwd__input" class="pwd__label") Mật khẩu
             input(type="password" name="password" id="pwd__input" placeholder="Nhập tên tài khoản")
-            .signup__button-group
-                button.btn.signin__btn ĐĂNG NHẬP
+            .login__button-group
+                button.btn.login__btn ĐĂNG NHẬP
+            a.signup__link(href="/register") CHƯA CÓ TÀI KHOẢN? ĐĂNG KÍ NGAY
 block script
             

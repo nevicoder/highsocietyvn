@@ -37,9 +37,11 @@ const getPost = async (req, res, next) => {
     const postId = req.params.postId;
     const post = await Post.findOne({ postId });
     console.log(post);
-    // const newViewCounts = (await post.viewCounts) + 1;
-    // await Post.findOneAndUpdate({ postId }, { viewCounts: newViewCounts });
-    await res.render("post", { post });
+    await Post.findOneAndUpdate(
+      { postId },
+      { viewCounts: post.viewCounts + 1 }
+    );
+    res.render("post", { post });
   } catch (e) {
     console.log(e);
   }
@@ -95,8 +97,12 @@ const getPosts = async (req, res, next) => {
 };
 
 const getCreatePost = (req, res, next) => {
-  if (userInfo && userInfo.role === "admin") res.render("create-post");
-  else res.status(304).send("Not allowed");
+  console.log(global.loggedIn);
+  if (global.loggedIn && global.loggedIn.role === "admin") {
+    res.render("create-post");
+  } else {
+    res.status(401).send("You must be admin to do this");
+  }
 };
 
 const postCreatePost = async (req, res, next) => {
@@ -114,6 +120,7 @@ const postCreatePost = async (req, res, next) => {
       imgs: body.post__imgs,
       datePosted: datePosted,
       tags: tags,
+      viewsCount: 0,
     },
     async (err, post) => {
       if (err) console.log(err);
@@ -125,6 +132,7 @@ const postCreatePost = async (req, res, next) => {
 const postComment = (req, res, next) => {
   const { postId } = req.params;
   if (loggedIn) {
+    console.log(loggedIn);
     Post.findOne({ postId: postId }, async (err, post) => {
       const commentList = await post.comments;
       const comment = await req.body.comment__content;
@@ -145,15 +153,16 @@ const postComment = (req, res, next) => {
   }
 };
 const postReply = async (req, res, next) => {
+  console.log(loggedIn);
   if (loggedIn) {
     try {
-      const { postId, commentId } = req.params;
+      const { postId, commentId } = await req.params;
       await Post.updateOne(
         {
           postId: postId,
           comments: {
             $elemMatch: {
-              id: commentId,
+              id: mongoose.Types.ObjectId(commentId),
             },
           },
         },
@@ -163,7 +172,7 @@ const postReply = async (req, res, next) => {
               $each: [
                 {
                   id: new mongoose.Types.ObjectId(),
-                  user: loggedIn.username,
+                  user: loggedIn,
                   content: req.body.reply__content,
                 },
               ],

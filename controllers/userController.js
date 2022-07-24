@@ -3,26 +3,35 @@ const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 
 const getLogin = (req, res, next) => {
-  res.render("login");
+  const [messages] = req.flash("message") || null;
+  console.log(messages);
+  res.render("login", { messages });
 };
 const postLogin = async (req, res, next) => {
   const username = await req.body.username;
   const password = await req.body.password;
   const user = await User.findOne({ username: username });
-  console.log(user);
   if (!user) {
-    console.log("Sai ten tai khoan");
+    req.flash("message", "Sai tên tài khoản");
+    res.redirect("/login");
   } else {
     const match = await bcrypt.compare(password, user.password);
     if (match) {
       const token = jwt.sign(
-        { userId: user._id, username: user.username, avatar: user.avatar },
+        {
+          userId: user._id,
+          username: user.username,
+          avatar: user.avatar,
+          role: user.role,
+        },
         process.env.JWT_SECRET
       );
       res.cookie("userInfo", token);
+      req.flash("message", `Chào ${username}`);
       res.redirect("/");
     } else {
-      console.log("Sai mat khau");
+      req.flash("message", "Sai mật khẩu");
+      res.redirect("/login");
     }
   }
 };
@@ -43,9 +52,9 @@ const postRegister = async (req, res, next) => {
   }
 };
 const getLogout = (req, res, next) => {
-  req.session.destroy(() => {
-    res.redirect("/");
-  });
+  res.clearCookie("userInfo");
+  global.loggedIn = undefined;
+  res.redirect("/");
 };
 module.exports = {
   getLogin,

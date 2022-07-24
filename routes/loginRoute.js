@@ -5,13 +5,5 @@ const redirectMiddleware = require("../middlewares/redirectMiddleware");
 const userController = require("../controllers/userController");
 router.get("/login", redirectMiddleware, userController.getLogin);
 router.post("/auth/login", redirectMiddleware, userController.postLogin);
-router.get("/auth/facebook", passport.authenticate("facebook"));
-router.get(
-  "/auth/facebook/callback",
-  passport.authenticate("facebook", {
-    successRedirect: "/",
-    failureRedirect: "/login",
-  })
-);
 
 module.exports = router;

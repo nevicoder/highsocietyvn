@@ -7,6 +7,7 @@ const mongoose = require("mongoose");
 const cookieParser = require("cookie-parser");
 const uri = process.env.MONGODB_URI;
 const PORT = process.env.PORT;
+const session = require("express-session");
 
 //routes
 const homeRoute = require("./routes/homeRoute");
@@ -25,8 +26,17 @@ mongoose
 app.use(cookieParser());
 app.use(express.json()); // for parsing application/json
 app.use(express.urlencoded({ extended: true })); // for parsing
+app.use(
+  session({
+    secret: "highsocietyvn",
+    saveUninitialized: true,
+    resave: true,
+  })
+);
 app.use(flash());
-global.loggedIn = null;
+
+app.use(flash());
+global.loggedIn = undefined;
 //config
 app.set("view engine", "pug");
 app.use(express.static("public"));

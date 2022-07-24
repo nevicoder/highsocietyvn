@@ -1,0 +1,32 @@
+.login__form {
+    width: 50%;
+margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.login__text {
+  text-align: center;
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+label {
+  font-size: 1.5rem;
+}
+input {
+  margin-bottom: 2rem;
+}
+
+.login__btn {
+  padding: 0.5rem 1rem;
+  background-color: var(--secondary-color);
+  color: var(--text-color);
+}
+
+.signup__link{
+    font-size: 2rem;
+    margin-top: 1rem;
+    color: #fff;
+    text-decoration: underline;
+}

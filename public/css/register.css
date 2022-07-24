@@ -1,23 +1,32 @@
-.login {
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  margin-top: 2rem;
+.signup__form {
+  width: 50%;
+margin: 0 auto;
+display: flex;
+flex-direction: column;
 }
-.login span {
+
+.signup__text {
+text-align: center;
+font-size: 3rem;
+margin-bottom: 1rem;
+}
+
+label {
+font-size: 1.5rem;
+}
+input {
+margin-bottom: 2rem;
+}
+
+.signup__btn {
+padding: 0.5rem 1rem;
+background-color: var(--secondary-color);
+color: var(--text-color);
+}
+
+.login__link{
   font-size: 2rem;
-  font-weight: bold;
-}
-
-.login__facebook {
-  margin-top: 2rem;
-
-  display: block;
-  width:30rem;
-}
-
-.login__facebook img {
-  width: 100%;
+  margin-top: 1rem;
+  color: #fff;
+  text-decoration: underline;
 }

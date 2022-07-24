@@ -16,6 +16,8 @@ html(lang='en')
 
     block css
     title High Society VN
+    if messages
+      body(onload=`showMsg("${messages}")`)
     if signedIn
       body(onload=`showMsg("Đăng nhập thành công")`)
     .wrapper
