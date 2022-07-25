@@ -5,10 +5,9 @@ const UserSchema = new Schema({
   password: { type: String, required: true },
   avatar: {
     type: String,
-    default:
-      "https://vnn-imgs-a1.vgcloud.vn/image1.ictnews.vn/_Files/2020/03/17/trend-avatar-1.jpg",
+    default: "avatar.jpg",
   },
-  role: { type: String,default: "user" },
+  role: { type: String, default: "user" },
 });
 const User = mongoose.model("User", UserSchema);
 module.exports = User;

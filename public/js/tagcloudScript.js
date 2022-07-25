@@ -33,6 +33,6 @@ let categoriesCloud = TagCloud(".tagcloud__container", texts, {
 let rootEl = document.querySelector(".tagcloud__container");
 rootEl.addEventListener("click", function clickEventHandler(e) {
   if (e.target.className === "tagcloud--item") {
-    window.location.href = `/category/${e.target.innerText.toLowerCase()}`;
+    window.location.href = `/category?q=${e.target.innerText.toLowerCase()}`;
   }
 });

@@ -10,7 +10,7 @@ input {
 }
 input,
 button,textarea {
-  color: var(--primary-color);
+  color: var(--text-color);
 
   outline: none;
   border: none;

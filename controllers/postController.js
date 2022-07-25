@@ -1,6 +1,5 @@
 const Post = require("../models/Post");
 const mongoose = require("mongoose");
-
 const generatePostTitle = (str) => {
   str = str.replace(/à|á|ạ|ả|ã|â|ầ|ấ|ậ|ẩ|ẫ|ă|ằ|ắ|ặ|ẳ|ẵ/g, "a");
   str = str.replace(/è|é|ẹ|ẻ|ẽ|ê|ề|ế|ệ|ể|ễ/g, "e");
@@ -36,7 +35,6 @@ const getPost = async (req, res, next) => {
   try {
     const postId = req.params.postId;
     const post = await Post.findOne({ postId });
-    console.log(post);
     await Post.findOneAndUpdate(
       { postId },
       { viewCounts: post.viewCounts + 1 }
@@ -86,16 +84,31 @@ const getPosts = async (req, res, next) => {
   const perPage = 5; // số lượng sản phẩm xuất hiện trên 1 page
   const page = req.params.page || 1;
   const pages = await Post.count();
-  const posts = await Post.find() // find tất cả các data
+  const posts = await Post.find()
     .skip((page - 1) * perPage) // Trong page đầu tiên sẽ bỏ qua giá trị là 0
-    .limit(perPage);
+    .limit(perPage)
+    .sort({ datePosted: -1 }); // find tất cả các data
   res.render("posts", {
     current: page,
     posts,
     pages: Math.ceil(pages / perPage),
   });
 };
+const getMostRead = async (req, res, next) => {
+  const perPage = 5; // số lượng sản phẩm xuất hiện trên 1 page
 
+  const page = req.params.page || 1;
+  const pages = await Post.count();
+  const posts = await Post.find()
+    .skip((page - 1) * perPage) // Trong page đầu tiên sẽ bỏ qua giá trị là 0
+    .limit(perPage)
+    .sort({ viewCounts: -1 }); // find tất cả các data
+  res.render("posts", {
+    current: page,
+    posts,
+    pages: Math.ceil(pages / perPage),
+  });
+};
 const getCreatePost = (req, res, next) => {
   console.log(global.loggedIn);
   if (global.loggedIn && global.loggedIn.role === "admin") {
@@ -128,11 +141,26 @@ const postCreatePost = async (req, res, next) => {
   );
   res.redirect("/posts");
 };
+const getCategoryPost = async (req, res, next) => {
+  const perPage = 5; // số lượng sản phẩm xuất hiện trên 1 page
 
+  const page = req.params.page || 1;
+  const category = await req.query.q;
+  const posts = await Post.find({
+    tags: { $elemMatch: { $eq: category } },
+  })
+    .skip((page - 1) * perPage) // Trong page đầu tiên sẽ bỏ qua giá trị là 0
+    .limit(perPage);
+  const pages = posts.length;
+  res.render("posts", {
+    current: page,
+    posts,
+    pages: Math.ceil(pages / perPage),
+  });
+};
 const postComment = (req, res, next) => {
   const { postId } = req.params;
   if (loggedIn) {
-    console.log(loggedIn);
     Post.findOne({ postId: postId }, async (err, post) => {
       const commentList = await post.comments;
       const comment = await req.body.comment__content;
@@ -153,7 +181,6 @@ const postComment = (req, res, next) => {
   }
 };
 const postReply = async (req, res, next) => {
-  console.log(loggedIn);
   if (loggedIn) {
     try {
       const { postId, commentId } = await req.params;
@@ -196,4 +223,6 @@ module.exports = {
   postCreatePost,
   postComment,
   postReply,
+  getMostRead,
+  getCategoryPost,
 };

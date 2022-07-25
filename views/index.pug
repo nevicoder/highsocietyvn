@@ -1,4 +1,45 @@
 extends layouts/main.pug
-
+block css 
+    link(rel="stylesheet" href="/css/posts.css")
 block main
     .content
+        .post--newest 
+            h1 Bài viết mới nhất
+            if newestPosts 
+                ul.newest__list 
+                    each post in newestPosts
+                        li.post__item
+                            .post__img
+                                img.post__img-link(src='/img/post_img/' +  post.thumbnail)
+                            .post__content
+                                a.post__title(href=`../post/${post.postId}`) #{post.title}
+                                p.post__detail !{post.content}
+                                .post__footer
+                                    div(class="post__date")
+                                        p Đăng ngày: #{post.datePosted}
+                                    div(class="post__view-counts")
+                                        p Lượt xem: #{post.viewCounts}    
+                                    div(class="post__tags") Chủ đề: 
+                                        each tag in post.tags
+                                            a(class="post__tag" href=`/category/${tag}`) #{tag},
+            a.newest-link(href="/posts") Xem tất cả bài viết mới nhất                        
+        .post--most-read 
+            h1 Bài viết được xem nhiều nhất
+            if mostReadPosts 
+                ul.newest__list 
+                    each post in mostReadPosts
+                        li.post__item
+                            .post__img
+                                img.post__img-link(src='/img/post_img/' +  post.thumbnail)
+                            .post__content
+                                a.post__title(href=`../post/${post.postId}`) #{post.title}
+                                p.post__detail !{post.content}
+                                .post__footer
+                                    div(class="post__date")
+                                        p Đăng ngày: #{post.datePosted}
+                                    div(class="post__view-counts")
+                                        p Lượt xem: #{post.viewCounts}    
+                                    div(class="post__tags") Chủ đề: 
+                                        each tag in post.tags
+                                            a(class="post__tag" href=`/category?q=${tag}`) #{tag},
+            a.newest-link(href="/most-viewed") Xem tất cả bài được xem nhiều nhất

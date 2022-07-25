@@ -21,7 +21,7 @@ block main
                         li(class="comment__item")
                             div.comment
                                 div.comment__avatar
-                                    img(src=`${comment.user.avatar}`)
+                                    img(src=`/img/user/${comment.user.avatar}`)
                                 div.comment__content
                                     b.comment__user #{comment.user.username}:
                                     p.comment__text #{comment.content}
@@ -29,12 +29,12 @@ block main
                                 each reply in comment.replies 
                                     div.reply
                                         div.reply__avatar
-                                            img(src=`${reply.user.avatar}`)
+                                            img(src=`/img/user/${reply.user.avatar}`)
                                         div.reply__content
                                             b.reply__user #{reply.user.username}:
                                             p.reply__text #{reply.content}
                             div.replies
-                                form.replies(method="POST" action=`/post/${post.postId}/comment/${comment.id}/replies`)
+                                form.replies__form(method="POST" action=`/post/${post.postId}/comment/${comment.id}/replies`)
                                     input(class="comment__id" name="post__id" type="hidden" value=`${post._id}`)
                                     input(class="comment__id" name="comment__id" type="hidden" value=`${comment.id}`)
                                     input(class="replies__input" name="reply__content" type="text" placeholder="Điền phản hồi" )
@@ -44,4 +44,4 @@ block main
             button.comment__btn Bình luận
 block script
     script(src="/js/commentValidation.js") 
-    script(src="/js/commentController.js") 
+    script(src="/js/replyValidation.js") 

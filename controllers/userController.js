@@ -36,7 +36,8 @@ const postLogin = async (req, res, next) => {
   }
 };
 const getRegister = (req, res, next) => {
-  res.render("register");
+  const [messages] = req.flash("message") || undefined;
+  res.render("register", { messages });
 };
 const postRegister = async (req, res, next) => {
   const username = req.body.username;
@@ -44,11 +45,13 @@ const postRegister = async (req, res, next) => {
 
   const match = await User.findOne({ username: username });
   if (match) {
+    req.flash("message", `Tên tài khoản ${username} đã tồn tại`);
     res.redirect("/register");
   } else {
     const hash = bcrypt.hashSync(password, 10);
     await User.create({ username: username, password: hash });
-    res.redirect("/");
+    req.flash("message", `Đăng kí thành công`);
+    res.redirect("/login");
   }
 };
 const getLogout = (req, res, next) => {

@@ -1,4 +1,5 @@
 .sidebar {
+  margin-top: 24px;
   background-color: var(--secondary-color);
 
   padding: 1rem;
