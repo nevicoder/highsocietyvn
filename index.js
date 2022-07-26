@@ -27,6 +27,7 @@ mongoose
 app.use(
   cors({
     origin: "*",
+    methods: ["POST"],
   })
 );
 app.use(cookieParser());
