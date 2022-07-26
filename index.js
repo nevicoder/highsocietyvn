@@ -19,6 +19,7 @@ const logoutRoute = require("./routes/logoutRoute");
 const commentRoute = require("./routes/commentRoute");
 const categoriesRoute = require("./routes/categoriesRoute");
 const authMiddleware = require("./middlewares/authMiddleware");
+const setCors = require("./middlewares/setCors");
 const dashBoardRoute = require("./routes/dashboardRoute");
 mongoose
   .connect(uri, { useNewUrlParser: true })
@@ -49,6 +50,7 @@ app.set("view engine", "pug");
 app.use(express.static("public"));
 
 app.get("*", authMiddleware);
+app.post("*", setCors);
 app.use("/", homeRoute);
 app.use(dashBoardRoute);
 app.use(registerRoute);

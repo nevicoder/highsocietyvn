@@ -21,7 +21,7 @@ const postDashboardLogin = async (req, res, next) => {
           },
           process.env.VITE_JWT_SECRET
         );
-        res.json(token);
+       json(token);
       } else {
         res.json("Khong phai la admin");
       }
