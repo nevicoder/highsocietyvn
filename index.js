@@ -52,7 +52,7 @@ app.use(express.static("public"));
 app.get("*", authMiddleware);
 app.post("*", setCors);
 app.use("/", homeRoute);
-app.use(dashBoardRoute);
+// app.use(dashBoardRoute);
 app.use(registerRoute);
 app.use(loginRoute);
 app.use(postRoute);
