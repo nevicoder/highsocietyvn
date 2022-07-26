@@ -8,6 +8,7 @@ const cookieParser = require("cookie-parser");
 const uri = process.env.MONGODB_URI;
 const PORT = process.env.PORT;
 const session = require("express-session");
+const cors = require("cors");
 
 //routes
 const homeRoute = require("./routes/homeRoute");
@@ -23,7 +24,7 @@ mongoose
   .connect(uri, { useNewUrlParser: true })
   .then(() => console.log("MongoDB Connected!"))
   .catch((err) => console.log(err));
-
+app.use(cors());
 app.use(cookieParser());
 app.use(express.json()); // for parsing application/json
 app.use(express.urlencoded({ extended: true })); // for parsing
