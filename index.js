@@ -24,7 +24,11 @@ mongoose
   .connect(uri, { useNewUrlParser: true })
   .then(() => console.log("MongoDB Connected!"))
   .catch((err) => console.log(err));
-app.use(cors());
+app.use(
+  cors({
+    origin: "*",
+  })
+);
 app.use(cookieParser());
 app.use(express.json()); // for parsing application/json
 app.use(express.urlencoded({ extended: true })); // for parsing
