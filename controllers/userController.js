@@ -22,7 +22,7 @@ const postLogin = async (req, res, next) => {
           userId: user._id,
           username: user.username,
           avatar: user.avatar,
-          role: user.role,
+          isAdmin: user.role === "admin" ? true : false,
         },
         process.env.JWT_SECRET
       );

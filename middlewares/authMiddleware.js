@@ -5,6 +5,7 @@ module.exports = async (req, res, next) => {
   if (token) {
     const info = jwt.verify(token, process.env.JWT_SECRET);
     global.loggedIn = info;
+    console.log(loggedIn);
   }
   next();
 };

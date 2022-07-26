@@ -18,6 +18,7 @@ const logoutRoute = require("./routes/logoutRoute");
 const commentRoute = require("./routes/commentRoute");
 const categoriesRoute = require("./routes/categoriesRoute");
 const authMiddleware = require("./middlewares/authMiddleware");
+const dashBoardRoute = require("./routes/dashboardRoute");
 mongoose
   .connect(uri, { useNewUrlParser: true })
   .then(() => console.log("MongoDB Connected!"))
@@ -42,11 +43,12 @@ app.set("view engine", "pug");
 app.use(express.static("public"));
 
 app.get("*", authMiddleware);
+app.use("/", homeRoute);
+app.use(dashBoardRoute);
 app.use(registerRoute);
 app.use(loginRoute);
 app.use(postRoute);
 app.use(logoutRoute);
 app.use(commentRoute);
 app.use(categoriesRoute);
-app.use("/", homeRoute);
 app.listen(process.env.PORT || PORT, () => console.log(`app is running...`));

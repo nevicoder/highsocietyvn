@@ -110,8 +110,7 @@ const getMostRead = async (req, res, next) => {
   });
 };
 const getCreatePost = (req, res, next) => {
-  console.log(global.loggedIn);
-  if (global.loggedIn && global.loggedIn.role === "admin") {
+  if (global.loggedIn && global.loggedIn.isAdmin) {
     res.render("create-post");
   } else {
     res.status(401).send("You must be admin to do this");
