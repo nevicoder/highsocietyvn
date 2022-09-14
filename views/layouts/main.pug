@@ -31,15 +31,18 @@ html(lang='en')
                a.header__navbar-link(href="/categories") Bài viết theo chủ đề
             li.header__navbar-item
               a.header__navbar-link Công cụ
-            if loggedIn.isAdmin
-              li.header__navbar-item
-                a.header__navbar-link(href="/dashboard") Dashboard
             if loggedIn
               li.header__navbar-item
                 a.header__navbar-link(href="/auth/logout") Đăng xuất
+                 if loggedIn & loggedIn.isAdmin
+                li.header__navbar-item
+                  a.header__navbar-link(href="/dashboard") Dashboard
             if !loggedIn
               li.header__navbar-item
                 a.header__navbar-link(href="/login") Đăng nhập/Đăng ký
+             
+            
+            
       .main
         block main
         include ../includes/sidebar.pug

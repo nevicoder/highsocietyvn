@@ -50,13 +50,13 @@ app.set("view engine", "pug");
 app.use(express.static("public"));
 
 app.get("*", authMiddleware);
-app.post("*", setCors);
+// app.post("*", setCors);
 app.use("/", homeRoute);
-// app.use(dashBoardRoute);
+app.use(dashBoardRoute);
 app.use(registerRoute);
 app.use(loginRoute);
 app.use(postRoute);
 app.use(logoutRoute);
 app.use(commentRoute);
 app.use(categoriesRoute);
-app.listen(process.env.PORT || PORT, () => console.log(`app is running...`));
+app.listen(PORT, () => console.log(`app is running...`));

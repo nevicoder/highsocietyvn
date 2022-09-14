@@ -56,7 +56,7 @@ const postRegister = async (req, res, next) => {
 };
 const getLogout = (req, res, next) => {
   res.clearCookie("userInfo");
-  global.loggedIn = undefined;
+  global.loggedIn = null;
   res.redirect("/");
 };
 module.exports = {

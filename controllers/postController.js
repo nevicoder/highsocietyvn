@@ -39,7 +39,8 @@ const getPost = async (req, res, next) => {
       { postId },
       { viewCounts: post.viewCounts + 1 }
     );
-    res.render("post", { post });
+    // res.render("post", { post });
+    res.json(post);
   } catch (e) {
     console.log(e);
   }
@@ -81,33 +82,36 @@ const getPost = async (req, res, next) => {
 //   });
 // };
 const getPosts = async (req, res, next) => {
-  const perPage = 5; // số lượng sản phẩm xuất hiện trên 1 page
+  const perPage = 3; // số lượng sản phẩm xuất hiện trên 1 page
   const page = req.params.page || 1;
-  const pages = await Post.count();
+  console.log(page);
+  const noOfPosts = await Post.count();
   const posts = await Post.find()
     .skip((page - 1) * perPage) // Trong page đầu tiên sẽ bỏ qua giá trị là 0
     .limit(perPage)
-    .sort({ datePosted: -1 }); // find tất cả các data
-  res.render("posts", {
+    .sort({ datePosted: -1 });
+
+  res.json({
+    perPage,
     current: page,
     posts,
-    pages: Math.ceil(pages / perPage),
+    noOfPosts,
   });
 };
 const getMostRead = async (req, res, next) => {
   const perPage = 5; // số lượng sản phẩm xuất hiện trên 1 page
-
   const page = req.params.page || 1;
   const pages = await Post.count();
   const posts = await Post.find()
     .skip((page - 1) * perPage) // Trong page đầu tiên sẽ bỏ qua giá trị là 0
     .limit(perPage)
     .sort({ viewCounts: -1 }); // find tất cả các data
-  res.render("posts", {
-    current: page,
-    posts,
-    pages: Math.ceil(pages / perPage),
-  });
+  // res.render("posts", {
+  //   current: page,
+  //   posts,
+  //   pages: Math.ceil(pages / perPage),
+  // });
+  res.json({ posts });
 };
 const getCreatePost = (req, res, next) => {
   if (global.loggedIn && global.loggedIn.isAdmin) {
@@ -214,7 +218,6 @@ const postReply = async (req, res, next) => {
     res.redirect("/login");
   }
 };
-
 module.exports = {
   getPost,
   getPosts,
