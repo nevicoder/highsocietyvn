@@ -10,10 +10,14 @@ const getLogin = (req, res, next) => {
 const postLogin = async (req, res, next) => {
   const username = await req.body.username;
   const password = await req.body.password;
+  console.log(username, password);
   const user = await User.findOne({ username: username });
   if (!user) {
-    req.flash("message", "Sai tên tài khoản");
-    res.redirect("/login");
+    // req.flash("message", "Sai tên tài khoản");
+    // res.redirect("/login");
+    res.json({
+      message: "wrong username",
+    });
   } else {
     const match = await bcrypt.compare(password, user.password);
     if (match) {
@@ -22,16 +26,26 @@ const postLogin = async (req, res, next) => {
           userId: user._id,
           username: user.username,
           avatar: user.avatar,
-          isAdmin: user.role === "admin" ? true : false,
+          isAdmin: user.role === "admin",
         },
         process.env.JWT_SECRET
       );
-      res.cookie("userInfo", token);
-      req.flash("message", `Chào ${username}`);
-      res.redirect("/");
+      console.log(token);
+      // res.cookie("token", token);
+      res.json({
+        message: "logged In",
+        token,
+        user: { id: user._id, username: user.username },
+      });
+
+      // // req.flash("message", `Chào ${username}`);
+      // // res.redirect("/");
     } else {
-      req.flash("message", "Sai mật khẩu");
-      res.redirect("/login");
+      res.json({
+        message: "wrong password",
+      });
+      // req.flash("message", "Sai mật khẩu");
+      // res.redirect("/login");
     }
   }
 };
@@ -45,13 +59,17 @@ const postRegister = async (req, res, next) => {
 
   const match = await User.findOne({ username: username });
   if (match) {
-    req.flash("message", `Tên tài khoản ${username} đã tồn tại`);
-    res.redirect("/register");
+    res.json({ message: "Ten tai khoan da ton tai" });
   } else {
     const hash = bcrypt.hashSync(password, 10);
-    await User.create({ username: username, password: hash });
-    req.flash("message", `Đăng kí thành công`);
-    res.redirect("/login");
+    await User.create({
+      username: username,
+      password: hash,
+      avatar: "",
+      role: "user",
+    });
+    // req.flash("message", `Đăng kí thành công`);
+    res.json({ message: "Registered successfully" });
   }
 };
 const getLogout = (req, res, next) => {

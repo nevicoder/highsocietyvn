@@ -93,7 +93,7 @@ const getPosts = async (req, res, next) => {
 
   res.json({
     perPage,
-    current: page,
+    current: parseInt(page),
     posts,
     noOfPosts,
   });
